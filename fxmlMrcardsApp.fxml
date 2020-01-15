@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.control.TabPane.TabClosingPolicy?>
+
+<TabPane fx:controller="mrcards.MrCardsAppController" 
+    xmlns:fx="http://javafx.com/fxml" TabClosingPolicy="UNAVAILABLE">
+	
+	<Tab text="Чтение карты">
+		
+		<GridPane alignment="center" hgap="10" vgap="10">
+			<padding>
+				<Insets top="5" right="5" bottom="5" left="5"/>
+			</padding>
+			<TextArea fx:id="display" GridPane.columnIndex="0" GridPane.rowIndex="1" prefColumnCount="25" GridPane.columnSpan="2"/>
+			<Button text="Подключить терминал" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#connectTerminal"/>
+			<Button text="Очистить дисплей" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#clearDisplay"/>
+			
+			<TextField fx:id="defineKeyType" GridPane.columnIndex="1" GridPane.rowIndex="3" minWidth="30" maxWidth="30"/>
+			<Label text="[1] Тип ключа [A\B]" GridPane.columnIndex="0" GridPane.rowIndex="3">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+			
+			<TextField fx:id="loadKey" GridPane.columnIndex="1" GridPane.rowIndex="4" minWidth="140" maxWidth="140"/>
+			<Button text="[2] Загрузить ключ"   GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#loadKey" prefWidth="140.0"/>
+			
+			<TextField fx:id="blockAddress" GridPane.columnIndex="1" GridPane.rowIndex="5" minWidth="30" maxWidth="30"/>
+			<Label text="[3] Адрес блока [1-64]" GridPane.columnIndex="0" GridPane.rowIndex="5">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+
+			<Label text="${blockAddress.text}" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+			<Button text="[4] Прочитать блок"   GridPane.columnIndex="0" GridPane.rowIndex="6" onAction="#readBlock" prefWidth="140.0"/>
+			
+			<Button text="[5] Записать в блок"   GridPane.columnIndex="0" GridPane.rowIndex="7" onAction="#updateBlock" prefWidth="140.0"/>
+			<TextField fx:id="setData" GridPane.columnIndex="1" GridPane.rowIndex="7" minWidth="340" maxWidth="340"/>
+
+		</GridPane>
+	</Tab>
+	<Tab text="Конвейер">
+	
+		<GridPane alignment="center" hgap="10" vgap="10">
+			<padding>
+				<Insets top="5" right="5" bottom="5" left="5"/>
+			</padding>
+			
+			<Button text="Очистить дисплей" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#clearBatchDisplay"/>
+			
+			<TextArea fx:id="batchDisplay" GridPane.columnIndex="0" GridPane.rowIndex="1" prefColumnCount="35" GridPane.columnSpan="2"/>
+			<Label text="" fx:id="batchLabel" GridPane.columnIndex="0" GridPane.rowIndex="2">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+			
+			<Label text="[3] Адрес блока" GridPane.columnIndex="0" GridPane.rowIndex="5">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+			<TextField fx:id="batchBlockAddress" GridPane.columnIndex="1" GridPane.rowIndex="5" minWidth="30" maxWidth="30"/>
+			
+			<Label text="[4] Адрес трейлера [4,8,12,16 и тд]" GridPane.columnIndex="0" GridPane.rowIndex="6">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+			<TextField fx:id="batchTrailerAddress" GridPane.columnIndex="1" GridPane.rowIndex="6" minWidth="30" maxWidth="30"/>
+			
+			<Label text="[5] Данные для трейлера" GridPane.columnIndex="0" GridPane.rowIndex="7">
+				<padding>
+					<Insets top="0" right="0" bottom="0" left="25"/>
+				</padding>
+			</Label>
+			<TextField fx:id="trailerData" GridPane.columnIndex="1" GridPane.rowIndex="7" minWidth="340" maxWidth="340"/>
+
+			<Button text="[6] ПУСК"   GridPane.columnIndex="0" GridPane.rowIndex="8" onAction="#batchProcessing" prefWidth="140.0"/>
+			<Button text=""   GridPane.columnIndex="0" GridPane.rowIndex="9" onAction="#stopBatchProcessing" prefWidth="140.0"/>
+			
+		</GridPane>
+	
+	</Tab>
+		
+</TabPane>
